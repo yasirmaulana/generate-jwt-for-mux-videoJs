@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    container_name: ems_backend_app
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./storage:/app/storage
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_KEY=${APP_KEY}
+      - DB_CONNECTION=mysql
+      - MUX_SECRET_KEY=${MUX_SECRET_KEY}
+    ports:
+      - "8001:80"
